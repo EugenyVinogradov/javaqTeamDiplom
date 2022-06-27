@@ -6,6 +6,18 @@ import java.util.Map;
 public class Player {
     private String name;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Map<Game, Integer> getPlayedTime() {
+        return playedTime;
+    }
+
+    public void setPlayedTime(Map<Game, Integer> playedTime) {
+        this.playedTime = playedTime;
+    }
+
     /** информация о том, в какую игру сколько часов было сыграно
     ключ - игра
     значение - суммарное количество часов игры в эту игру */
