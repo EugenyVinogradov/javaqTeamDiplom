@@ -23,6 +23,7 @@ public class PlayerTest {
         int actual = player.sumGenre(game.getGenre());
         assertEquals(expected, actual);
     }
+
     @Test
     public void checkInstallingGame() {
         GameStore store = new GameStore();
@@ -33,7 +34,7 @@ public class PlayerTest {
     }
 
     @Test
-    public  void checkInstallingExistingGame() {
+    public void checkInstallingExistingGame() {
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
         Player player = new Player("Petya");
@@ -45,6 +46,7 @@ public class PlayerTest {
         int actual = player.sumGenre(game.getGenre());
         assertEquals(expected, actual);
     }
+
     @Test
     public void checkPlayNotInstalledGame() {
         GameStore store = new GameStore();
@@ -70,6 +72,7 @@ public class PlayerTest {
         int actual = player.sumGenre(game1.getGenre());
         assertEquals(expected, actual);
     }
+
     @Test
     public void checkMostPlayerByGenre() {
         GameStore store = new GameStore();
