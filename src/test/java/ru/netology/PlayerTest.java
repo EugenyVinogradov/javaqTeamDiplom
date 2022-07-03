@@ -25,6 +25,26 @@ public class PlayerTest {
     }
 
     @Test
+    public void TestSumGenreTwoGames() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game1 = store.publishGame("Тестовая игра 2", "Гонки");
+        Game game3 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+
+        Player player = new Player("Petya");
+        player.installGame(game);
+        player.installGame(game1);
+        player.installGame(game3);
+        player.play(game, 3);
+        player.play(game1, 2);
+        player.play(game3, 1);
+
+        int expected = 4;
+        int actual = player.sumGenre("Аркады");
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void checkInstallingGame() {
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
@@ -34,7 +54,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void checkInstallingExistingGame() {
+    public void checkAddDoubleGame() {
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
         Player player = new Player("Petya");
@@ -81,19 +101,53 @@ public class PlayerTest {
         Game game3 = store.publishGame("Тестовая игра 3", "Гонки");
         Game game4 = store.publishGame("Тестовая игра 4", "Гонки");
         Player player = new Player("Petya");
-        Player player2 = new Player("Vasya");
         player.installGame(game1);
-        player2.installGame(game2);
+        player.installGame(game2);
         player.installGame(game3);
         player.installGame(game4);
         player.play(game1, 1);
         player.play(game1, 2);
-        player2.play(game2, 8);
+        player.play(game2, 8);
         player.play(game3, 3);
         player.play(game4, 1);
         Game expected = game2;
         Game actual = player.mostPlayerByGenre("Гонки");
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void shouldMostPlayerByGenreNoInstallGame() {
+        GameStore store = new GameStore();
+        Game game1 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game2 = store.publishGame("Тестовая игра 2", "Гонки");
+        Game game3 = store.publishGame("Тестовая игра 3", "Гонки");
+
+        Player player = new Player("Petya");
+        player.installGame(game2);
+        player.installGame(game3);
+        player.play(game2, 3);
+        player.play(game3, 2);
+
+        Game actual = player.mostPlayerByGenre("Аркады");
+        assertEquals(null, actual);
+
+
+    }
+
+    @Test
+    public void addPlayGameNegativeValue() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+
+        Player player = new Player("Petya");
+        player.installGame(game);
+
+
+        assertThrows(Exception.class, () -> {
+            player.play(game, -1);
+        });
+    }
+
     // другие ваши тесты
 }
+
