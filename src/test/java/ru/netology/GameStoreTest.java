@@ -85,10 +85,14 @@ public class GameStoreTest {
         Game game1 = store.publishGame("Нетология Гонки Онлайн", "Гонки");
         Player player = new Player("Anton");
         Player player1 = new Player("Alex");
+        Player player2 = new Player("Alexey");
         player.installGame(game);
         player1.installGame(game1);
+        player2.installGame(game1);
         player.play(game, 2);
         player1.play(game1, 4);
+        player2.play(game1, 3);
+
         String expected = "Alex";
         String actual = store.getMostPlayer();
 
