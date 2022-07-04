@@ -57,7 +57,7 @@ public class PlayerTest {
     public void checkAddDoubleGame() {
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
-        Player player = new Player("Petya");
+        Player player = new Player("Vasya");
         player.installGame(game);
         player.play(game, 3);
         player.installGame(game);
