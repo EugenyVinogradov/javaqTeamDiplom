@@ -91,7 +91,7 @@ public class Player {
             }
         }
         for (Game game : playedTime.keySet()) {
-            if (max == playedTime.get(game)) {
+            if (max == playedTime.get(game) && playedTime.get(game) != 0 && genre != null) {
                 return game;
             }
         }

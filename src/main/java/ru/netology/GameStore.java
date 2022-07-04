@@ -21,11 +21,9 @@ public class GameStore {
      */
     public Game publishGame(String title, String genre) {
         Game game = new Game(title, genre, this);
-        /*
         if (games.contains(game)) {
             throw new RuntimeException("Игра " + title + " уже опубликована!");
         }
-        */
         games.add(game);
         return game;
     }

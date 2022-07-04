@@ -29,7 +29,7 @@ public class PlayerTest {
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
         Game game1 = store.publishGame("Тестовая игра 2", "Гонки");
-        Game game3 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game3 = store.publishGame("Нетология Баттл Офлайн", "Аркады");
 
         Player player = new Player("Petya");
         player.installGame(game);
@@ -146,6 +146,23 @@ public class PlayerTest {
         assertThrows(Exception.class, () -> {
             player.play(game, -1);
         });
+    }
+
+    @Test
+    public void checkMostPlayerByGenreIfNotPlayedThisGenre() {
+        GameStore store = new GameStore();
+        Game game1 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game2 = store.publishGame("Тестовая игра 2", "Гонки");
+        Game game3 = store.publishGame("Тестовая игра 3", "RPG");
+        Player player = new Player("Petya");
+        player.installGame(game1);
+        player.installGame(game2);
+        player.installGame(game3);
+        player.play(game1, 1);
+        player.play(game2, 8);
+        Game expected = null;
+        Game actual = player.mostPlayerByGenre("RPG");
+        assertEquals(expected, actual);
     }
 
     // другие ваши тесты
